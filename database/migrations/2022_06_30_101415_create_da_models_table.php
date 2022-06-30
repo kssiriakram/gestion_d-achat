@@ -15,9 +15,9 @@ class CreateDaModelsTable extends Migration
     {
         Schema::create('da_models', function (Blueprint $table) {
             $table->id();
-            $table->date("date_emetteur");
-            $table->date("date_chef_service");
-            $table->date("date_directeur");
+            $table->date("date_emetteur")->nullable();
+            $table->date("date_chef_service")->nullable()->default(NULL);
+            $table->date("date_directeur")->nullable()->default(NULL);
             $table->text('commentaire')->nullable();
             $table->string("reference");
             $table->integer("qte");

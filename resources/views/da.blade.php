@@ -12,10 +12,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            
+
             <h4>veuillez renseigner les champs suivant:</h4>
             <hr>
-            <form action="" method="post"> 
+            <form action="/add_da" method="post">
+                @if(Session::has('success'))
+                <div class="alert alert-success">{{ Session::get('success') }}</div>
+                @endif
+                @if(Session::has('fail'))
+                <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+                @endif
                 @csrf
             <div class="form-group">
                 <label for="delai" >Delai</label>
@@ -32,16 +38,17 @@
                     <div class="form-group">
                         <label for="qte" >Quantite</label>
                         <input type="text" class="text form-control" name="qte" value="{{old('qte')}}" placeholder="Entrer la quantite">
-                        <span class="text-danger">@error('quantite'){{ $message }}@enderror</span>
+                        <span class="text-danger">@error('qte'){{ $message }}@enderror</span>
                         </div>
 
                             <div class="form-group">
                                 <label for="acheteur" >L'acheteur</label>
                                 <select name="acheteur" id="acheteur" class="select form-control">
-                                    <option valeur='1'>mohamed</option>
-                                    <option valeur='2'>cheikhna</option>
+                                    @foreach ($acheteurs as $acheteur )
+                                    <option value={{ $acheteur->id }}>{{ $acheteur->name }}</option>
+                                    @endforeach
                                 </select>
-                                <span class="text-danger">@error('acheteur'){{ $message }}@enderror</span>
+
                                 </div>
 
                                 <div class="form-group">
@@ -49,7 +56,7 @@
                                     <input type="text" class="text form-control" name="code_CC" value="{{old('code_CC')}}" placeholder="Entrer le code de centre de cout">
                                     <span class="text-danger">@error('code_CC'){{ $message }}@enderror</span>
                                     </div>
-                
+
                 <div class="form-group">
                     <label for="code_NE" >Code nature economie</label>
                     <input type="code_NE" class="text form-control" name="code_NE" value="{{old('code_NE')}}" placeholder="Enter Code de nature economie">
@@ -59,8 +66,8 @@
                     <div class="form-group">
                         <label for="societe" >societe</label>
                         <select name="societe" id="societe" class="select form-control">
-                            <option valeur='coficab maroc'>coficab maroc</option>
-                            <option valeur='coficab international'>coficab international</option>
+                            <option value='coficab maroc'>coficab maroc</option>
+                            <option value='coficab international'>coficab international</option>
                         </select>
                         <span class="text-danger">@error('societe'){{ $message }}@enderror</span>
                         </div>
@@ -71,7 +78,7 @@
                     <a href="/registration" class="">Not registered || click here</a>
                 </form>
         </div>
-    
+
 
     </div>
     </div>
