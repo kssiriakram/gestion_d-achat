@@ -34,6 +34,8 @@
                     <span class="text-danger">@error('password'){{ $message }}@enderror</span>
                     </div>
 
+                     
+
                     <button  type="submit" class="btn btn-block btn-primary">Submit</button>
                     <br>
 

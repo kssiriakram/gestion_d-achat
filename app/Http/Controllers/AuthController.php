@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -24,6 +25,7 @@ class AuthController extends Controller
          ]);
 
          $user = new User();
+         $user->type=$request->type;
          $user->name=$request->name;
          $user->email=$request->email;
          $user->password=Hash::make($request->password);
@@ -40,16 +42,16 @@ class AuthController extends Controller
 
     public function signin(Request $request){
         $request->validate([
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'password' => 'required|min:5|max:12'
          ]);
-
-         $user = User::where('email','=',$request->email);
+         $user = DB::table('users')->where("email", $request->email)->first();
 
          if($user){
             if(Hash::check($request->password,$user->password)){
                 $request->session()->put('loginId',$user->id);
-                return redirect('/dashboard');
+                $request->session()->put('type',$user->type);
+                return redirect('/da');
             }else{
                 return back()->with('fail','passwords does not match');
             }

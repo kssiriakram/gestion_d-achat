@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,4 @@ Route::get('/login',[AuthController::class,'login']);
 Route::get('/registration',[AuthController::class,'registration']);
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/signin',[AuthController::class,'signin']);
+Route::get('/da',[DaController::class,'da']);

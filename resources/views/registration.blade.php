@@ -39,6 +39,18 @@
                         <span class="text-danger">@error('password'){{ $message }}@enderror</span>
                         </div>
 
+
+                        <div class="form-group">
+                            <label for="type" >type</label>
+                            <select name="type" id="type" class="select form-control">
+                                <option valeur='emetteur'>emetteur</option>
+                                <option valeur='acheteur'>acheteur</option>
+                                <option valeur='chef de service'>chef de service</option>
+                                <option valeur='directeur'>directeur</option>
+                            </select>
+                            <span class="text-danger">@error('type'){{ $message }}@enderror</span>
+                            </div>
+
                         <button  type="submit" class="btn btn-block btn-primary">Submit</button>
                         <a href="/login" class="">Already registered || click here</a>
             </form>
